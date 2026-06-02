@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Can Music Affect Concentration?</title>
+
+<!-- =========================
+     GOOGLE FONTS
+========================= -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+:root{
+
+    --bg:#05070B;
+    --bg2:#0A0F18;
+    --panel:rgba(255,255,255,0.04);
+
+    --white:#ECECEC;
+    --muted:#9AA4B2;
+
+    --cyan:#73E6FF;
+    --blue:#5EA8FF;
+    --purple:#A78BFA;
+
+    --border:rgba(255,255,255,0.08);
+
+    --glow:0 0 40px rgba(115,230,255,0.12);
+
+}
+
+/* =====================================================
+   BODY
+===================================================== */
+
+body{
+
+    background:
+    radial-gradient(circle at top left, rgba(94,168,255,0.08), transparent 25%),
+    radial-gradient(circle at top right, rgba(167,139,250,0.08), transparent 25%),
+    radial-gradient(circle at center, rgba(115,230,255,0.04), transparent 35%),
+    var(--bg);
+
+    color:var(--white);
+
+    overflow-x:hidden;
+
+    font-family:'Inter',sans-serif;
+
+}
+
+/* =====================================================
+   CUSTOM SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#06080D;
+}
+
+::-webkit-scrollbar-thumb{
+    background:rgba(255,255,255,0.15);
+    border-radius:20px;
+}
+
+/* =====================================================
+   PARTICLES CANVAS
+===================================================== */
+
+#particles{
+
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    z-index:-2;
+
+}
+
+/* =====================================================
+   AMBIENT BLURS
+===================================================== */
+
+.blur{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(120px);
+    z-index:-1;
+    opacity:0.25;
+}
+
+.blur1{
+    width:400px;
+    height:400px;
+    background:#4DA3FF;
+    top:-120px;
+    left:-100px;
+}
+
+.blur2{
+    width:350px;
+    height:350px;
+    background:#A78BFA;
+    right:-100px;
+    top:300px;
+}
+
+.blur3{
+    width:300px;
+    height:300px;
+    background:#73E6FF;
+    bottom:-100px;
+    left:40%;
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+nav{
+
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:100%;
+    padding:22px 70px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    backdrop-filter:blur(20px);
+
+    background:rgba(5,7,11,0.5);
+
+    border-bottom:1px solid var(--border);
+
+    z-index:999;
+
+}
+
+.logo{
+
+    font-size:13px;
+    letter-spacing:4px;
+    color:var(--cyan);
+    font-weight:600;
+
+}
+
+.nav-links{
+
+    display:flex;
+    gap:35px;
+
+}
+
+.nav-links a{
+
+    text-decoration:none;
+    color:var(--muted);
+
+    font-size:12px;
+    letter-spacing:1px;
+
+    transition:0.4s;
+
+}
+
+.nav-links a:hover{
+
+    color:var(--cyan);
+
+}
+
+/* =====================================================
+   HERO SECTION
+===================================================== */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    position:relative;
+
+    padding:0 20px;
+
+}
+
+.hero-content{
+
+    max-width:1000px;
+
+}
+
+.hero-tag{
+
+    color:var(--cyan);
+
+    letter-spacing:3px;
+    font-size:12px;
+
+    margin-bottom:20px;
+}
+
+.hero h1{
+
+    font-size:clamp(3rem,8vw,7rem);
+
+    line-height:1;
+
+    font-family:'Cormorant Garamond',serif;
+    font-weight:600;
+
+    margin-bottom:30px;
+
+    background:linear-gradient(
+        90deg,
+        #ffffff,
+        #b9e7ff,
+        #d7c8ff
+    );
+
+    -webkit-background-clip:text;
+    color:transparent;
+
+}
+
+.hero p{
+
+    max-width:720px;
+    margin:auto;
+
+    line-height:1.9;
+
+    color:var(--muted);
+
+    font-size:15px;
+
+}
+
+/* =====================================================
+   HERO IMAGE
+===================================================== */
+
+.hero-image{
+
+    width:100%;
+    max-width:1200px;
+
+    height:500px;
+
+    margin:80px auto 0;
+
+    border-radius:30px;
+
+    border:1px solid var(--border);
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,0.06),
+        rgba(255,255,255,0.02)
+    );
+
+    backdrop-filter:blur(20px);
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    transition:0.6s;
+
+    box-shadow:var(--glow);
+
+}
+
+.hero-image:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.hero-image::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.04),
+        transparent
+    );
+
+    animation:shine 6s linear infinite;
+
+}
+
+@keyframes shine{
+
+    from{
+        transform:translateX(-100%);
+    }
+
+    to{
+        transform:translateX(100%);
+    }
+
+}
+
+.hero-image img{
+
+    width:100%;
+    height:100%;
+    object-fit:cover;
+
+    opacity:0.85;
+
+}
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+section{
+
+    padding:140px 10%;
+
+    position:relative;
+
+}
+
+.section-title{
+
+    font-size:48px;
+
+    font-family:'Cormorant Garamond',serif;
+
+    margin-bottom:30px;
+
+}
+
+.section-text{
+
+    color:var(--muted);
+
+    line-height:2;
+
+    max-width:900px;
+
+    font-size:15px;
+
+}
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.grid{
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+
+}
+
+/* =====================================================
+   GLASS CARD
+===================================================== */
+
+.card{
+
+    background:var(--panel);
+
+    border:1px solid var(--border);
+
+    border-radius:28px;
+
+    padding:40px;
+
+    backdrop-filter:blur(30px);
+
+    transition:0.5s;
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:rgba(115,230,255,0.3);
+
+    box-shadow:var(--glow);
+
+}
+
+.card h3{
+
+    margin-bottom:20px;
+
+    font-size:28px;
+
+    font-family:'Cormorant Garamond',serif;
+
+}
+
+.card p{
+
+    color:var(--muted);
+    line-height:1.9;
+
+}
+
+/* =====================================================
+   IMAGE PLACEHOLDERS
+===================================================== */
+
+.image-box{
+
+    width:100%;
+    height:420px;
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    border:1px solid var(--border);
+
+    position:relative;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,0.06),
+        rgba(255,255,255,0.01)
+    );
+
+    transition:0.6s;
+
+}
+
+.image-box:hover{
+
+    transform:scale(1.02);
+
+    box-shadow:0 0 60px rgba(115,230,255,0.15);
+
+}
+
+.image-box img{
+
+    width:100%;
+    height:100%;
+    object-fit:cover;
+
+    opacity:0.82;
+
+}
+
+.image-label{
+
+    position:absolute;
+
+    bottom:20px;
+    left:20px;
+
+    padding:10px 18px;
+
+    background:rgba(0,0,0,0.4);
+
+    border:1px solid rgba(255,255,255,0.1);
+
+    border-radius:100px;
+
+    backdrop-filter:blur(20px);
+
+    font-size:12px;
+
+    letter-spacing:1px;
+
+}
+
+/* =====================================================
+   QUOTES
+===================================================== */
+
+.quote{
+
+    margin:80px 0;
+
+    padding:60px;
+
+    border-radius:30px;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(115,230,255,0.08),
+        rgba(167,139,250,0.06)
+    );
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    text-align:center;
+
+    position:relative;
+
+}
+
+.quote p{
+
+    font-size:34px;
+
+    line-height:1.5;
+
+    font-family:'Cormorant Garamond',serif;
+
+}
+
+/* =====================================================
+   TIMELINE
+===================================================== */
+
+.timeline{
+
+    margin-top:100px;
+
+    position:relative;
+
+}
+
+.timeline::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    top:0;
+
+    width:2px;
+    height:100%;
+
+    background:linear-gradient(
+        transparent,
+        var(--cyan),
+        transparent
+    );
+
+}
+
+.timeline-item{
+
+    width:50%;
+
+    padding:40px;
+
+    position:relative;
+
+}
+
+.timeline-item:nth-child(odd){
+
+    left:0;
+    text-align:right;
+
+}
+
+.timeline-item:nth-child(even){
+
+    left:50%;
+
+}
+
+.timeline-dot{
+
+    width:16px;
+    height:16px;
+
+    background:var(--cyan);
+
+    border-radius:50%;
+
+    position:absolute;
+
+    top:50px;
+
+    box-shadow:0 0 20px var(--cyan);
+
+}
+
+.timeline-item:nth-child(odd) .timeline-dot{
+
+    right:-8px;
+
+}
+
+.timeline-item:nth-child(even) .timeline-dot{
+
+    left:-8px;
+
+}
+
+.timeline-item h4{
+
+    margin-bottom:10px;
+    font-size:20px;
+
+}
+
+.timeline-item p{
+
+    color:var(--muted);
+
+}
+
+/* =====================================================
+   QUESTIONS
+===================================================== */
+
+.question-grid{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+
+    margin-top:60px;
+
+}
+
+.question{
+
+    padding:35px;
+
+    border-radius:24px;
+
+    background:var(--panel);
+
+    border:1px solid var(--border);
+
+    transition:0.4s;
+
+}
+
+.question:hover{
+
+    transform:translateY(-8px);
+
+    border-color:rgba(115,230,255,0.3);
+
+}
+
+.question h4{
+
+    line-height:1.7;
+
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    padding:80px 10%;
+
+    border-top:1px solid var(--border);
+
+    text-align:center;
+
+}
+
+footer h2{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:42px;
+
+    margin-bottom:20px;
+
+}
+
+footer p{
+
+    color:var(--muted);
+
+    margin-bottom:30px;
+
+}
+
+.footer-links{
+
+    display:flex;
+    justify-content:center;
+    gap:30px;
+
+    flex-wrap:wrap;
+
+}
+
+.footer-links a{
+
+    color:var(--muted);
+
+    text-decoration:none;
+
+    transition:0.3s;
+
+}
+
+.footer-links a:hover{
+
+    color:var(--cyan);
+
+}
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+.hidden{
+
+    opacity:0;
+    transform:translateY(70px);
+
+    transition:1.2s ease;
+
+}
+
+.show{
+
+    opacity:1;
+    transform:translateY(0);
+
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1000px){
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .timeline::before{
+        left:20px;
+    }
+
+    .timeline-item{
+        width:100%;
+        left:0 !important;
+        padding-left:60px;
+        text-align:left !important;
+    }
+
+    .timeline-dot{
+        left:12px !important;
+    }
+
+    nav{
+        padding:20px;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero-image{
+        height:350px;
+    }
+
+    section{
+        padding:100px 7%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     PARTICLES
+========================= -->
+
+<canvas id="particles"></canvas>
+
+<!-- =========================
+     AMBIENT BLURS
+========================= -->
+
+<div class="blur blur1"></div>
+<div class="blur blur2"></div>
+<div class="blur blur3"></div>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav>
+
+    <div class="logo">
+        NEUROARCHIVE
+    </div>
+
+    <div class="nav-links">
+        <a href="#intro">INTRO</a>
+        <a href="#research">RESEARCH</a>
+        <a href="#timeline">TIMELINE</a>
+        <a href="#questions">QUESTIONS</a>
+    </div>
+
+</nav>
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-content hidden">
+
+        <div class="hero-tag">
+            INTERDISCIPLINARY PSYCHOLOGICAL RESEARCH
+        </div>
+
+        <h1>
+            Can Music<br>
+            Affect Concentration?
+        </h1>
+
+        <p>
+            Exploring emotional immersion, dopamine loops, overstimulation,
+            silence discomfort, digital attention fragmentation,
+            and the modern psychological dependence on stimulation.
+        </p>
+
+        <div class="hero-image">
+
+            <!-- IMAGE HERE -->
+            <img src="neural.png" alt="">
+
+            <div class="image-label">
+               
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<section id="intro">
+
+    <div class="grid">
+
+        <div class="hidden">
+
+            <h2 class="section-title">
+                Music Is Becoming An Environment
+            </h2>
+
+            <p class="section-text">
+                Music no longer functions merely as entertainment.
+                It increasingly behaves like an emotional atmosphere -
+                a cognitive architecture shaping perception, thought,
+                memory, and internal pacing.
+                <br><br>
+                Modern humans rarely experience uninterrupted silence.
+                Attention constantly negotiates between stimulation,
+                emotional escape, and digital interference.
+            </p>
+
+        </div>
+
+        <div class="image-box hidden">
+
+            <img src="addict.png" alt="">
+
+            <div class="image-label">
+                
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     QUOTE
+========================= -->
+
+<section>
+
+    <div class="quote hidden">
+
+        <p>
+            “Sometimes music does not improve concentration -
+            it emotionally transports the mind away from reality.”
+        </p>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     RESEARCH CARDS
+========================= -->
+
+<section id="research">
+
+    <div class="grid">
+
+        <div class="card hidden">
+
+            <h3>
+                Emotional Synchronization
+            </h3>
+
+            <p>
+                Humans often emotionally synchronize with soundscapes.
+                Mood, memory, identity, and emotional pacing become
+                intertwined with audio environments.
+            </p>
+
+        </div>
+
+        <div class="image-box hidden">
+
+            <img src="emotion.png" alt="emotion">
+
+            <div class="image-label">
+                SOUND & MEMORY
+            </div>
+
+        </div>
+
+        <div class="image-box hidden">
+
+            <img src="hopelress.png" alt="">
+
+            <div class="image-label">
+                DIGITAL OVERSTIMULATION
+            </div>
+
+        </div>
+
+        <div class="card hidden">
+
+            <h3>
+                Dopamine & Reels
+            </h3>
+
+            <p>
+                Modern platforms normalize fragmented attention through
+                rapid emotional switching. Notifications, reels,
+                autoplay audio, and algorithmic stimulation constantly
+                reshape focus behavior.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     TIMELINE
+========================= -->
+
+<section id="timeline">
+
+    <h2 class="section-title hidden">
+        Attention Degradation Timeline
+    </h2>
+
+    <div class="timeline">
+
+        <div class="timeline-item hidden">
+
+            <div class="timeline-dot"></div>
+
+            <h4>Silence Discomfort</h4>
+
+            <p>
+                Quiet environments begin feeling emotionally unfamiliar.
+            </p>
+
+        </div>
+
+        <div class="timeline-item hidden">
+
+            <div class="timeline-dot"></div>
+
+            <h4>Seeking Stimulation</h4>
+
+            <p>
+                The mind increasingly searches for continuous input.
+            </p>
+
+        </div>
+
+        <div class="timeline-item hidden">
+
+            <div class="timeline-dot"></div>
+
+            <h4>Music / Reels / Notifications</h4>
+
+            <p>
+                Stimulation becomes ambient and persistent.
+            </p>
+
+        </div>
+
+        <div class="timeline-item hidden">
+
+            <div class="timeline-dot"></div>
+
+            <h4>Emotional Escape</h4>
+
+            <p>
+                Attention drifts into emotionally immersive environments.
+            </p>
+
+        </div>
+
+        <div class="timeline-item hidden">
+
+            <div class="timeline-dot"></div>
+
+            <h4>Fragmented Attention</h4>
+
+            <p>
+                Cognitive continuity weakens over time.
+            </p>
+
+        </div>
+
+        <div class="timeline-item hidden">
+
+            <div class="timeline-dot"></div>
+
+            <h4>Mental Fatigue</h4>
+
+            <p>
+                The brain begins requiring more stimulation for engagement.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     REFLECTION
+========================= -->
+
+<section>
+
+    <div class="grid">
+
+        <div class="image-box hidden">
+
+            <img src="peace.png" alt="">
+
+            <div class="image-label">
+              
+            </div>
+
+        </div>
+
+        <div class="hidden">
+
+            <h2 class="section-title">
+                Artificial Calm vs Natural Calm
+            </h2>
+
+            <p class="section-text">
+                Music can emotionally soothe the nervous system,
+                yet sometimes it masks discomfort rather than resolving it.
+                <br><br>
+                The body may appear calm while the mind continues drifting
+                through internal simulations, emotional replaying,
+                and subconscious overstimulation.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     QUESTIONS
+========================= -->
+
+<section id="questions">
+
+    <h2 class="section-title hidden">
+        Questions I'm Still Exploring
+    </h2>
+
+    <div class="question-grid">
+
+        <div class="question hidden">
+            <h4>
+                Are humans losing tolerance for silence?
+            </h4>
+        </div>
+
+        <div class="question hidden">
+            <h4>
+                Has digital life reshaped attention permanently?
+            </h4>
+        </div>
+
+        <div class="question hidden">
+            <h4>
+                Is overstimulation becoming normalized?
+            </h4>
+        </div>
+
+        <div class="question hidden">
+            <h4>
+                Can emotional discomfort exist without distraction?
+            </h4>
+        </div>
+
+        <div class="question hidden">
+            <h4>
+                Are humans emotionally escaping reality more often today?
+            </h4>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <h2>
+        Psychological Research Archive
+    </h2>
+
+    <p>
+        Exploring attention, cognition, digital environments,
+        emotional immersion, and human behavioral transformation.
+    </p>
+
+    <div class="footer-links">
+
+        <a href="#">
+            Portfolio
+        </a>
+
+        <a href="#">
+            GitHub
+        </a>
+
+        <a href="#">
+            Email
+        </a>
+
+    </div>
+
+</footer>
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for(let i=0;i<80;i++){
+
+    particles.push({
+
+        x:Math.random()*canvas.width,
+        y:Math.random()*canvas.height,
+
+        r:Math.random()*2,
+
+        dx:(Math.random()-0.5)*0.2,
+        dy:(Math.random()-0.5)*0.2
+
+    });
+
+}
+
+function animateParticles(){
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    particles.forEach(p=>{
+
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if(p.x<0 || p.x>canvas.width) p.dx*=-1;
+        if(p.y<0 || p.y>canvas.height) p.dy*=-1;
+
+        ctx.beginPath();
+
+        ctx.arc(
+            p.x,
+            p.y,
+            p.r,
+            0,
+            Math.PI*2
+        );
+
+        ctx.fillStyle="rgba(115,230,255,0.45)";
+
+        ctx.fill();
+
+    });
+
+    requestAnimationFrame(animateParticles);
+
+}
+
+animateParticles();
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+const observer = new IntersectionObserver(entries=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("show");
+
+        }
+
+    });
+
+},{
+    threshold:0.1
+});
+
+document.querySelectorAll(".hidden").forEach(el=>{
+
+    observer.observe(el);
+
+});
+
+/* =====================================================
+   RESIZE
+===================================================== */
+
+window.addEventListener("resize",()=>{
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+});
+
+</script>
+
+</body>
+</html>
